@@ -119,6 +119,8 @@ public class DownloadManager {
                         filePath = basePath + "/" + DigestTool.md5(url);
                         fileName = DigestTool.md5(url);
                     }
+
+                    final File downloadFile = new File(filePath);
                     //创建meta文件
                     DownloadFile temp  = app.getDownloadFileDao().queryByTag(DigestTool.md5(url));
                     if(temp == null) {
@@ -132,16 +134,16 @@ public class DownloadManager {
                         temp.setDownloading(true);
                         long id = app.getDownloadFileDao().insert(temp);
                         temp.setId(id);
+                        out = new FileOutputStream(downloadFile);
                     } else {
                         File ff = new File(temp.getAbsolutePath());
                         conn.setRequestProperty("RANGE", "bytes="+ff.length()+"-");
+                        out = new FileOutputStream(downloadFile,true);
                     }
-
-                    final File downloadFile = new File(filePath);
 
                     //开始下载
                     in = conn.getInputStream();
-                    out = new FileOutputStream(downloadFile);
+
                     byte buff[] = new byte[1024];
                     int pos = 0;
                     while (!isStopped() && ((pos = in.read(buff)) != -1)) {

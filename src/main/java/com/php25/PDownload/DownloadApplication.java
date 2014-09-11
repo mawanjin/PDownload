@@ -68,7 +68,7 @@ public class DownloadApplication extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
-        Log.v("php","资源释放");
+        Log.v(DownloadTool.LOG_TAG,"资源释放");
         if(null != downloadFileDao) {
             downloadFileDao.close();
             downloadFileDao = null;
