@@ -1,6 +1,7 @@
 package com.php25.PDownload;
 
 import android.content.Context;
+import android.os.Looper;
 import android.util.Log;
 import com.php25.tools.DigestTool;
 
@@ -9,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
+import java.util.RandomAccess;
 import java.util.concurrent.Future;
 
 /**
@@ -130,9 +132,10 @@ public class DownloadManager {
                         temp.setDownloading(true);
                         long id = app.getDownloadFileDao().insert(temp);
                         temp.setId(id);
+                    } else {
+                        File ff = new File(temp.getAbsolutePath());
+                        conn.setRequestProperty("RANGE", "bytes="+ff.length()+"-");
                     }
-
-
 
                     final File downloadFile = new File(filePath);
 
