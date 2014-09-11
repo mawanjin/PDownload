@@ -56,7 +56,7 @@ public class DownloadApplication extends Application {
             @Override
             public void run() {
                 downloadFileDao = new DownloadFileDao(DownloadApplication.this);
-                List<DownloadFile> downloadFiles = DownloadManager.getAllUnfinishedDownloadFileMetas(DownloadApplication.this);
+                List<DownloadFile> downloadFiles = DownloadTool.getAllDownloadingTask(DownloadApplication.this);
                 for (DownloadFile file : downloadFiles) {
                     addDownloadManager(DigestTool.md5(file.getUrl()), new DownloadManager(DownloadApplication.this));
                 }

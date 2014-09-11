@@ -20,7 +20,7 @@ public class DownloadFileDao {
 
     public DownloadFileDao(Context context) {
         database = context.openOrCreateDatabase("com_php25_PDownload_metaFile.db", Context.MODE_PRIVATE, null);
-        database.execSQL("DROP TABLE IF EXISTS DownloadFile");
+//        database.execSQL("DROP TABLE IF EXISTS DownloadFile");
         database.execSQL("CREATE TABLE IF NOT EXISTS DownloadFile (id INTEGER PRIMARY KEY AUTOINCREMENT,tag VARCHAR,url VARCHAR,basePath VARCHAR,name VARCHAR,absolutePath VARCHAR,totalSize INTEGER,downloading SMALLINT)");
     }
 

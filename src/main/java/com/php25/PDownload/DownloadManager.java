@@ -227,9 +227,6 @@ public class DownloadManager {
         return future;
     }
 
-    public static List<DownloadFile> getAllUnfinishedDownloadFileMetas(Context context) {
-        DownloadApplication app  = (DownloadApplication)context.getApplicationContext();
-        return app.getDownloadFileDao().queryAll();
-    }
+
 
 }

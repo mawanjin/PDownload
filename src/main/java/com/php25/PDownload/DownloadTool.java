@@ -1,7 +1,9 @@
 package com.php25.PDownload;
 
+import android.content.Context;
 import com.php25.tools.DigestTool;
 
+import java.util.List;
 import java.util.concurrent.Future;
 
 /**
@@ -62,6 +64,15 @@ public class DownloadTool {
     public static boolean isStopped(DownloadApplication context,String url) {
         DownloadManager downloadManager = context.getDownloadManager(DigestTool.md5(url));
         return downloadManager.isStopped();
+    }
+
+    /**
+     * 获取所有需要下载的任务列表
+     * @param context
+     * @return
+     */
+    public static List<DownloadFile> getAllDownloadingTask(DownloadApplication context) {
+        return context.getDownloadFileDao().queryAll();
     }
 
 }
