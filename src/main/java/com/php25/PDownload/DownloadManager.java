@@ -54,6 +54,22 @@ public class DownloadManager {
         this.downloadHandler = downloadHandler;
     }
 
+    private DownloadFile file;
+
+    public DownloadFile getFile() {
+        return file;
+    }
+
+    private Boolean canUpdateProcess = false;
+
+    public synchronized Boolean getCanUpdateProcess() {
+        return canUpdateProcess;
+    }
+
+    public synchronized void setCanUpdateProcess(Boolean canUpdateProcess) {
+        this.canUpdateProcess = canUpdateProcess;
+    }
+
     public DownloadManager(DownloadHandler downloadHandler, Context context) {
         this.downloadHandler = downloadHandler;
         this.context = context;
@@ -138,7 +154,8 @@ public class DownloadManager {
                         out = new FileOutputStream(downloadFile,true);
                     }
 
-
+                    file = temp;
+                    setCanUpdateProcess(true);
 
                     //开始下载
                     in = conn.getInputStream();

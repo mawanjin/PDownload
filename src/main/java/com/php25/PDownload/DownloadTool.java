@@ -79,4 +79,26 @@ public class DownloadTool {
         return context.getDownloadFileDao().queryAll();
     }
 
+    /**
+     * 判断是否可以开始跟新进度条
+     * @param context
+     * @param url
+     * @return
+     */
+    public static boolean canBeginUpdateProgress(DownloadApplication context,String url) {
+        DownloadManager downloadManager = context.getDownloadManager(DigestTool.md5(url));
+        return downloadManager.getCanUpdateProcess();
+    }
+
+    /**
+     * 获得下载任务的meta文件
+     * @param context
+     * @param url
+     * @return
+     */
+    public static DownloadFile getDownloadFile(DownloadApplication context,String url) {
+        DownloadManager downloadManager = context.getDownloadManager(DigestTool.md5(url));
+        return downloadManager.getFile();
+    }
+
 }
