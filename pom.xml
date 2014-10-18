@@ -30,21 +30,10 @@
 
         <dependency>
             <groupId>com.php25.tools</groupId>
-            <artifactId>PTools</artifactId>
+            <artifactId>ptools</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <url>${releases.url}</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <url>${snapshots.url}</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <build>
         <plugins>
