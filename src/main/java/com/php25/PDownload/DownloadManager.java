@@ -1,7 +1,6 @@
 package com.php25.PDownload;
 
 import android.content.Context;
-import android.os.Looper;
 import android.util.Log;
 import com.php25.tools.DigestTool;
 
@@ -9,8 +8,6 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
-import java.util.RandomAccess;
 import java.util.concurrent.Future;
 
 /**
@@ -55,6 +52,22 @@ public class DownloadManager {
 
     public void setDownloadHandler(DownloadHandler downloadHandler) {
         this.downloadHandler = downloadHandler;
+    }
+
+    private DownloadFile file;
+
+    public DownloadFile getFile() {
+        return file;
+    }
+
+    private Boolean canUpdateProcess = false;
+
+    public synchronized Boolean getCanUpdateProcess() {
+        return canUpdateProcess;
+    }
+
+    public synchronized void setCanUpdateProcess(Boolean canUpdateProcess) {
+        this.canUpdateProcess = canUpdateProcess;
     }
 
     public DownloadManager(DownloadHandler downloadHandler, Context context) {
@@ -140,6 +153,9 @@ public class DownloadManager {
                         conn.setRequestProperty("RANGE", "bytes="+ff.length()+"-");
                         out = new FileOutputStream(downloadFile,true);
                     }
+
+                    file = temp;
+                    setCanUpdateProcess(true);
 
                     //开始下载
                     in = conn.getInputStream();

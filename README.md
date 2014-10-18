@@ -58,3 +58,7 @@ DownloadTool
   public static boolean isStopped(DownloadApplication context,String url);
 ### (5)  获取所有未完成的下载任务列表
   public static List<DownloadFile> getAllDownloadingTask(DownloadApplication context);
+### (6)  判断是否可以开始更新进度条
+  public static boolean canBeginUpdateProgress(DownloadApplication context,String url)
+### (7)  获得下载任务的meta文件
+  public static DownloadFile getDownloadFile(DownloadApplication context,String url)
