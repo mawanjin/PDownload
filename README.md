@@ -1,7 +1,7 @@
 PDownload
 =========
 
-android 下载组件s
+android 下载组件
 
 使用方法
 =========
